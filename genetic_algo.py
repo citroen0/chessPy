@@ -8,6 +8,8 @@ from matplotlib import pyplot as plt
 from keras.models import Sequential
 from keras.layers import Dense,Flatten
 
+df = open("gamedata.txt","a")
+
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 def sigmoid(x):
@@ -91,7 +93,9 @@ class genetic_algorithm:
         
         loss = []
         for i in range(generations):
-            print('Generation',str(i),':')
+            aa = ('Generation',str(i),':')
+            bb = str(aa)
+            df.write(bb)
             agents = generate_agents(pop_size,model)
             agents = fitness(agents)
             agents = selection(agents)
@@ -100,7 +104,9 @@ class genetic_algorithm:
             agents = fitness(agents)
             loss.append(agents[0].fitness)
             if any(agent.fitness > threshold for agent in agents):
-                print('Threshold met at generation '+str(i)+' !')
+                cc = ('Threshold met at generation '+str(i)+' !'+'\n')
+                dd = str(cc)
+                df.write(dd)
                 
             if i % 100:
                 clear_output()

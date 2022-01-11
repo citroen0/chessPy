@@ -14,8 +14,12 @@ chess_dict = {
     '.' : [0,0,0,0,0,0,0,0,0,0,0,0],
 }
 
+df = open("pgndata.txt","a")
+
 def translate(board): 
     pgn = board.epd()
+    npgn = str(pgn+'\n')
+    df.write(npgn)
     foo = []  
     pieces = pgn.split(" ", 1)[0]
     rows = pieces.split("/")

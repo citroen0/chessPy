@@ -1,7 +1,7 @@
 import chess
 from eval_network import *
 from monte_carlo_opt import *
-
+df = open("gamedata.txt","a")
 def fitness(agents):
     for agent in range(len(agents)-1):
         game = []
@@ -16,7 +16,9 @@ def fitness(agents):
         player_1 = agents[agent]
 
         counter = 0
-        print('Game Started between Agent',player_1_idx,'and Agent',player_2_idx)
+        tx = ('Game Started between Agent',player_1_idx,'and Agent',player_2_idx)
+        txd = str(tx)
+        df.write(txd)
         while counter < 100 and board.is_game_over() == False:
             model  = player_1.neural_network
 
